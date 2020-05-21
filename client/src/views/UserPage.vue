@@ -54,10 +54,15 @@ export default {
                 this.password = ''
             })
             .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops..',
+                    text: 'Invalid email or password'
+                })
                 this.email = ''
                 this.password = ''
-                this.errorMsg = err
-                console.log(err)
+                // this.errorMsg = err.message
+                console.log(err.response.request.response)
             })
         },
         onSignInSuccess (googleUser) {

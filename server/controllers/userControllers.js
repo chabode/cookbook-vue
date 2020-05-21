@@ -13,7 +13,7 @@ class UserController {
         })
         .then(user => {
             if(user){
-                next({msg:'User has already registered'})
+                next({name:'User has already registered'})
             }
             return User.create({
                 email, password
@@ -34,17 +34,16 @@ class UserController {
         })
         .then(user => {
             if(!user || !comparePassword(password, user.password)){
-                next({msg:'Invalid Email or Password'})
+                next({name:'Invalid Email or Password'})
+            } else {
+                const access_token = generateToken(user)
+                const email = user.email
+                res.status(200).json({access_token, email})
             }
-            return user
-        })
-        .then(user => {
-            const access_token = generateToken(user)
-            const email = user.email
-            res.status(200).json({access_token, email})
         })
         .catch(err => {
-            next(err)
+            next({name: 'No token generated'})
+            // console.log(err)
         })
     }
 

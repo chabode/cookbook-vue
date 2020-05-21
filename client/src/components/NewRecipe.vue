@@ -14,7 +14,10 @@
                 </div>
                 <div class="form-group">
                     <label>Category</label>
-                    <input v-model="category" placeholder="Heavy Meal">
+                    <select v-model="category">
+                        <option>Heavy Meal</option>
+                        <option>Light Meal</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Instruction</label>
@@ -81,7 +84,12 @@ export default {
                 console.log(response)
             })
             .catch(err => {
-                console.log(err)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err.response
+                })
+                console.log(err.response)
             })
         }
     }

@@ -53,7 +53,11 @@ class RecipeController{
             where : {id}
         })
         .then(data => {
-            res.status(200).json(data)
+            if (data == 1){
+                res.status(200).json(data)
+            } else {
+                next({name : 'Data not found'})
+            }
         })
         .catch(err => {
             next(err)

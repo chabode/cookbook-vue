@@ -4,8 +4,11 @@
             <p style="text-align: center;"> {{category}} Meal </p>
         </div>
         <div class="wrapper">
-            <div v-for="(card,index) in cards" :key='index' :card='card'>
-                <div class="card">
+            <RecipeCard v-for="(card, index) in cards" :key="index" :card="card"
+            @hapus="hapus">
+            </RecipeCard>
+            <!-- <div v-for="(card,index) in cards" :key='index' :card='card'> -->
+                <!-- <div class="card">
                     <div class="row">
                         <div class="col">
                             <p> <strong> {{card.meal}} </strong> </p>
@@ -22,18 +25,22 @@
                         <button class="btn btn-info" style="width: 25%" @click.prevent='showInstruction' >Show Details</button>
                         <button class="btn btn-danger" style="width: 20%" @click="hapus(card.id)">Delete</button>
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
         </div>
     </div>   
 </template>
 
 <script>
 import axios from 'axios'
+import RecipeCard from './RecipeCard'
 
 export default {
     name: 'RecipeBoard',
     props: ['category', 'cards', 'url'],
+    components: {
+        RecipeCard
+    },
     data(){
         return {
             description: false
@@ -77,21 +84,5 @@ export default {
     background-color: green;
     height: 100%;
     overflow: scroll;
-}
-.card{
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    margin: 10px;
-    margin-left: 10px;
-    padding: 5px;
-}
-.card img{
-    width: 150px;
-    border-radius: 50%;
-}
-.col{
-    width: 50%;
-    /* border: .1em solid black; */
 }
 </style>
