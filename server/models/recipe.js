@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       validate : {
         notEmpty : {
           msg: 'Your Category is empty'
-        },
-        isIn : {
-          args: [['Heavy Meal','Light Meal']],
-          msg: 'Must be Heavy Meal or Light Meal'
         }
       }  
     },

@@ -87,9 +87,9 @@ export default {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: err.response
+                    text: err.response.request.response
                 })
-                console.log(err.response)
+                // console.log(err.response.request.response)
             })
         }
     }
